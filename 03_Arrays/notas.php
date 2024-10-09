@@ -33,17 +33,17 @@
     array_push($notas, ["Sebas", "Desarrollo web cliente"]);
 
     unset($notas[1]);
-    $_nombre = array_column($notas, 0);
-    array_multisort($_nombre, SORT_ASC, $notas);
+    $notas = array_values($notas); // devuelve los valores del array con las keys bien puestas, necesario hacer después del unset, ya que me deja una key vacía
 
-    for ($i = 0; $i < count($notas); $i++) $notas[$i][2] = rand(1, 10);
     for ($i = 0; $i < count($notas); $i++) {
+        $notas[$i][2] = rand(1, 10);
         if($notas[$i][2] < 5)
             $notas[$i][3] = "NO APTO";
         else if($notas[$i][2] >= 5)
             $notas[$i][3] = "APTO";
     }
 
+    $_nombre = array_column($notas, 0);
     $_notas = array_column($notas, 2);
     $_asignatura = array_column($notas, 1);
     array_multisort($_nombre, SORT_ASC, $_notas, SORT_ASC, $_asignatura, SORT_ASC, $notas);
@@ -63,7 +63,7 @@
         <tbody>
             <?php
             foreach($notas as $nota){
-                list($nombre, $asignatura, $grade, $estado) = $nota; ?>
+                list($nombre, $asignatura, $grade, $estado) = $nota; ?> <!-- el list tiene un funcionamiento muy simple, es un bucle que asigna cada posicion del array a cada variable que se le pasa -->
                 <tr>
                     <td><?php echo "$nombre" ?></td>
                     <td><?php echo "$asignatura" ?></td>
@@ -71,7 +71,6 @@
                     <td><?php echo "$estado" ?></td>
                 </tr>
             <?php }
-            
             ?>
         </tbody>
     </table>
