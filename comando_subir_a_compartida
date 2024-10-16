@@ -1,0 +1,2 @@
+cd ../..
+sudo cp -r var/www/html/Ejercicios/ media/sf_Compartido_maquina_virtual/
