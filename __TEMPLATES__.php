@@ -146,7 +146,7 @@
     </table>
 
     <!-- -----FORMULARIOS----- -->
-
+    <!-- Mirar ejercicio "divisas.php" -->
 
 
 </head>
